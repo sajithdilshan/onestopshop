@@ -1,0 +1,21 @@
+-#  This file is app/views/movies/index.html.haml
+%h3 All Products
+
+%table{:class=> 'table table-striped'}
+  %thead
+    %tr
+      %th ID
+      %th Description
+      %th= link_to 'Type', products_path(:sort => 'type')
+      %th Remaining Quantity
+      %th Rate
+  %tbody
+    - @products.each_with_index do |product,index|
+      %tr
+        %td= product.id
+        %td= product.description
+        %td= product.product_type
+        %td= product.remaining_quantity
+        %td= product.rate
+= will_paginate @products, :class => 'apple_pagination'
+
