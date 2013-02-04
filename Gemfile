@@ -5,17 +5,21 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+group :development, :test do
+  gem 'sqlite3'
+  gem 'ruby-debug19', :require => 'ruby-debug'
+end
+group :production do
+  gem 'pg'
+end
+
+
 gem 'haml'
 gem 'bootstrap-sass'
 gem 'will_paginate', '~> 3.0.0'
 gem 'simple_form'
 
 # use Ruby debugger
-group :development, :test do
-	gem 'ruby-debug19'
-end
-
 
 
 # Gems used only for assets and not required
