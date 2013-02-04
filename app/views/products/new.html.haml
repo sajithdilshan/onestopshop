@@ -1,0 +1,10 @@
+%h3 Add New Product
+
+= simple_form_for(@product, :html => {:class => 'form-horizontal'}) do |f|
+	=f.input :description, label: 'Product Description'
+	=f.input :product_type, label: 'Product Type'
+	=f.input :remaining_quantity, label: 'Quantity'
+	=f.input :rate, label: 'Price'
+	=f.button :submit, :class => 'btn-primary'
+	=submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger"
+ 

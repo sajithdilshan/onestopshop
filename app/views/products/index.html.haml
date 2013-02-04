@@ -4,11 +4,13 @@
 %table{:class=> 'table table-striped'}
   %thead
     %tr
-      %th ID
+      %th= link_to 'ID', products_path(:sort =>'id')
       %th Description
       %th= link_to 'Type', products_path(:sort => 'type')
       %th Remaining Quantity
       %th Rate
+      %th Update
+      %th Remove
   %tbody
     - @products.each_with_index do |product,index|
       %tr
@@ -17,5 +19,7 @@
         %td= product.product_type
         %td= product.remaining_quantity
         %td= product.rate
+        %td= link_to 'Update', edit_product_path(product)
+        %td= button_to "Remove", product_path(product), :method => :delete, :confirm => "Product details will be removed permanently. Are you sure?", :class => "btn btn-mini btn-danger"
 = will_paginate @products, :class => 'apple_pagination'
 
