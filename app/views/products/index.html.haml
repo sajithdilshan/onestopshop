@@ -1,4 +1,3 @@
--#  This file is app/views/movies/index.html.haml
 %h3 All Products
 
 %table{:class=> 'table table-striped'}
@@ -22,4 +21,3 @@
         %td= link_to 'Update', edit_product_path(product)
         %td= button_to "Remove", product_path(product), :method => :delete, :confirm => "Product details will be removed permanently. Are you sure?", :class => "btn btn-mini btn-danger"
 = will_paginate @products, :class => 'apple_pagination'
-

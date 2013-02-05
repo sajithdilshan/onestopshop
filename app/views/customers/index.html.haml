@@ -1,0 +1,21 @@
+%h3 All Customers
+
+%table{:class=> 'table table-striped'}
+  %thead
+    %tr
+      %th= link_to 'ID', customers_path(:sort =>'id')
+      %th First Name
+      %th Last Name
+      %th= link_to 'Type', customers_path(:sort => 'type')
+      %th Update
+      %th Remove
+  %tbody
+    - @customers.each_with_index do |customer,index|
+      %tr
+        %td= customer.id
+        %td= link_to customer.first_name, customer_path(customer)
+        %td= customer.last_name
+        %td= customer.customer_type
+        %td= link_to 'Update', edit_customer_path(customer)
+        %td= button_to "Remove", customer_path(customer), :method => :delete, :confirm => "Customer details will be removed permanently. Are you sure?", :class => "btn btn-mini btn-danger"
+= will_paginate @customer, :class => 'apple_pagination'

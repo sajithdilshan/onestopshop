@@ -1,0 +1,41 @@
+%h3 Details about #{@customer.first_name} #{@customer.last_name}
+
+%dl{:class => 'dl-horizontal'}
+  %dt First Name:
+  %dd= @customer.first_name
+  - if @customer.middle_name.present?
+    %dt Middle Name:
+    %dd= @customer.middle_name
+  %dt Last Name
+  %dd= @customer.last_name
+  %br
+  %dt Address
+  %dd= @customer.address
+  %dt Province
+  %dd= @customer.province
+  - if @customer.telephone_number.present?
+    %dt Telephone No
+    %dd= @customer.telephone_number
+  - if @customer.email.present?
+    %dt Email
+    %dd= @customer.email
+  %br
+  %dt Customer Type
+  %dd= @customer.customer_type
+  %br
+  - if @customer.customer_type == 'mailorder'
+    %dt TRN
+    %dd= @customer.registration_number
+  - else
+    %dt BRN
+    %dd= @customer.registration_number
+    %dt Initial Credit
+    %dd= @customer.initial_credit
+    %dt Remaining Credit
+    %dd= @customer.remaining_credit
+  - if @customer.customer_type == 'largerorder'
+    %dt Sales Assistant
+    %dd @customer.sales_assistant
+
+
+=link_to 'Back to customer list', customers_path

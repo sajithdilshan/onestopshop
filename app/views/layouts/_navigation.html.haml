@@ -8,6 +8,13 @@
 		%ul.dropdown-menu
 			%li= link_to "Show Products", products_path
 			%li= link_to "Add Products", new_product_path
+	%li.dropdown
+		%a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+			Customers
+			%b.caret
+		%ul.dropdown-menu
+			%li= link_to "Customer List", customers_path
+			%li= link_to "Add Customer", new_customer_path
 / - else
 /   %li
 /     = link_to('Login', new_user_session_path)
