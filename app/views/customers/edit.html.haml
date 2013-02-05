@@ -1,0 +1,35 @@
+%h3 Update Customer
+
+= simple_form_for(@customer, :html => {:class => 'form-horizontal'}) do |f|
+	=f.input :customer_type, collection: [ "mailorder", "largeorder", "walkinretail"],  disabled: true
+	%br
+	=f.input :first_name, label: 'First Name'
+	=f.input :middle_name, label: 'Middle Name'
+	=f.input :last_name, label: 'Last Name'
+	%br
+	=f.input :address, label: 'Address'
+	=f.input :province, label: 'Province'
+	=f.input :telephone_number, label: 'Telephone No'
+	=f.input :email, label: 'Email'
+	%br
+	=f.input :registration_number, label: 'TRN/BRN', disabled: true
+	=f.input :initial_credit, label: 'Initial Credit', disabled: true
+	=f.input :sales_assistant, label: 'Sales Assistant ID'
+
+	=f.button :submit, :class => 'btn-primary'
+	=submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger"
+ 
+<script language="javascript">
+var $type = $('#customer_customer_type'), $reg_num = $('#customer_registration_number'), $credit = $('#customer_initial_credit'), $sales_ast = $('#customer_sales_assistant');
+$type.change(function () {
+if ($type.val() == 'mailorder') {
+$sales_ast.attr('disabled', 'disabled').val('');
+} 
+if ($type.val() == 'largeorder') {
+$sales_ast.removeAttr('disabled');
+}
+if ($type.val() == 'walkinretail') {
+$sales_ast.attr('disabled', 'disabled').val('');
+}
+}).trigger('change');
+</script>

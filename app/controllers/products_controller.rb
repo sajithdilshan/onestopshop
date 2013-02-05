@@ -17,7 +17,6 @@ class ProductsController < ApplicationController
 		if @product.save
 			flash[:notice] = "Product with ID #{@product.id} was successfully added."
 			redirect_to new_product_path
-			# 
 		else
 			flash[:alert] = "Error adding Product."
 			redirect_to new_product_path

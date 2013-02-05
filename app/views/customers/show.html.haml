@@ -39,3 +39,8 @@
 
 
 =link_to 'Back to customer list', customers_path
+%br
+%br
+= link_to 'Update customer info', edit_customer_path(@customer)
+%br
+= link_to "Remove customer", customer_path(@customer), :method => :delete, :confirm => "Customer details will be removed permanently. Are you sure?"
