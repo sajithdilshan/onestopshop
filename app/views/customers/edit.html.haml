@@ -15,11 +15,11 @@
 	=f.input :registration_number, label: 'TRN/BRN', disabled: true
 	=f.input :initial_credit, label: 'Initial Credit', disabled: true
 	=f.input :sales_assistant, label: 'Sales Assistant ID'
-
-	=f.button :submit, :class => 'btn-primary'
-	=submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger"
+	%div{:class => 'form-actions'}
+		=f.button :submit, :class => 'btn-primary'
+		=link_to "Cancel", customer_path(@customer), :class => 'btn'
  
-<script language="javascript">
+<script type="text/javascript">
 var $type = $('#customer_customer_type'), $reg_num = $('#customer_registration_number'), $credit = $('#customer_initial_credit'), $sales_ast = $('#customer_sales_assistant');
 $type.change(function () {
 if ($type.val() == 'mailorder') {

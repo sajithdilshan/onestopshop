@@ -5,6 +5,7 @@
 	=f.input :product_type, label: 'Product Type'
 	=f.input :remaining_quantity, label: 'Quantity'
 	=f.input :rate, label: 'Price'
-	=f.button :submit, :class => 'btn-primary'
-	=submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger"
+	%div{:class => 'form-actions'}
+		=f.button :submit, :class => 'btn-primary'
+		=link_to "Cancel", products_path, :class => 'btn'
  

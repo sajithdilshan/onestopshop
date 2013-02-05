@@ -3,6 +3,5 @@ class Product < ActiveRecord::Base
 	validates :product_type, :presence => true
 	validates :remaining_quantity, :presence => true
 	validates :rate, :presence => true
-	self.per_page = 25
-
+	self.per_page = 15
 end

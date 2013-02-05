@@ -24,9 +24,9 @@ class CustomersController < ApplicationController
 		@customer = Customer.new(@temp)
 		if @customer.save
 			flash[:notice] = "Customer named #{@customer.first_name} was successfully added."
-			redirect_to new_customer_path
+			redirect_to customer_path(@customer.id)
 		else
-			flash[:alert] = "Error adding Product."
+			flash[:alert] = "Error adding customer."
 			redirect_to new_customer_path
 		end
 	end
@@ -39,7 +39,7 @@ class CustomersController < ApplicationController
 		@customer = Customer.find params[:id]
 		@customer.update_attributes!(params[:customer])
 		flash[:notice] = " #{@customer.first_name}'s details updated successfully"
-		redirect_to customers_path
+		redirect_to customer_path
 	end
 
 	def destroy
