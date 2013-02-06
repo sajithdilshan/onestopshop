@@ -1,9 +1,14 @@
 class ProductsController < ApplicationController
 	def index
-		if params[:sort] == 'type'
-			@products = Product.order("product_type").page(params[:page])
+		if params[:search].present? and params[:column_name].present?
+			@products = Product.search_products(params[:column_name], params[:search])
+
+			if @products.nil?
+				@products = Product.all
+				flash[:alert] = "No records found."
+			end
 		else
-			@products = Product.paginate :page => params[:page]
+			@products = Product.all
 		end
 	end
 

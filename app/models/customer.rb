@@ -7,4 +7,11 @@ class Customer < ActiveRecord::Base
 	validates :registration_number, :presence => true
 	self.per_page = 25
 
+	def self.search_customers(column, search)
+	  if search and column
+	    find(:all, :conditions => ["#{column} LIKE ?", "%#{search}%"])
+	  else
+	    return nil
+	  end
+	end
 end

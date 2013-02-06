@@ -1,9 +1,14 @@
 class CustomersController < ApplicationController
 	def index
-		if params[:sort] == 'type'
-			@customers = Customer.order("customer_type").page(params[:page])
+		if params[:search].present? and params[:column_name].present?
+			@customers = Customer.search_customers(params[:column_name], params[:search])
+		
+			if @customers.nil?
+				@customers = Customer.all
+				flash[:alert] = "No records found."
+			end
 		else
-			@customers = Customer.paginate :page => params[:page]
+			@customers = Customer.all
 		end
 	end
 

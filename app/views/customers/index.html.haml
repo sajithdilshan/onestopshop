@@ -1,12 +1,19 @@
-%h3 All Customers
+%h3 Customer List
+
+= form_tag customers_path, :method => 'get', :class => "form-inline" do
+  = label_tag "Search in   "
+  = select_tag "column_name", options_for_select(%w{ id first_name last_name customer_type}) 
+  = label_tag "  for "
+  = text_field_tag :search, nil, :placeholder => " ", :class => "input-medium "
+  = submit_tag "Go", :name => 'submit', :class => "btn"
 
 %table{:class=> 'table table-striped'}
   %thead
     %tr
-      %th= link_to 'ID', customers_path(:sort =>'id')
+      %th ID
       %th First Name
       %th Last Name
-      %th= link_to 'Type', customers_path(:sort => 'type')
+      %th Type
       %th Update
       %th Remove
   %tbody
@@ -18,4 +25,4 @@
         %td= customer.customer_type
         %td= link_to 'Update', edit_customer_path(customer)
         %td= button_to "Remove", customer_path(customer), :method => :delete, :confirm => "Customer details will be removed permanently. Are you sure?", :class => "btn btn-mini btn-danger"
-= will_paginate @customer, :class => 'apple_pagination'
+/ = will_paginate @customer, :class => 'apple_pagination'

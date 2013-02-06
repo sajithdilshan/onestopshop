@@ -1,11 +1,19 @@
-%h3 All Products
+%h3 Product List
+
+= form_tag products_path, :method => 'get', :class => "form-inline" do
+  = label_tag "Search in   "
+  = select_tag "column_name", options_for_select(%w{ id description product_type}) 
+  = label_tag "  for "
+  = text_field_tag :search, nil, :placeholder => " ", :class => "input-medium "
+  = submit_tag "Go", :name => 'submit', :class => "btn"
+
 
 %table{:class=> 'table table-striped'}
   %thead
     %tr
-      %th= link_to 'ID', products_path(:sort =>'id')
+      %th ID
       %th Description
-      %th= link_to 'Type', products_path(:sort => 'type')
+      %th Type
       %th Remaining Quantity
       %th Rate
       %th Update
@@ -20,4 +28,4 @@
         %td= product.rate
         %td= link_to 'Update', edit_product_path(product)
         %td= button_to "Remove", product_path(product), :method => :delete, :confirm => "Product details will be removed permanently. Are you sure?", :class => "btn btn-mini btn-danger"
-= will_paginate @products, :class => 'apple_pagination'
+/ = will_paginate @products, :class => 'apple_pagination'
