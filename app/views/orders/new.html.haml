@@ -1,0 +1,16 @@
+%h3 Place a new order
+
+= form_tag orders_path, :method => 'post', :class => "form-inline" do
+  =label_tag "Customer ID: "
+  =text_field_tag :customer_id
+  %br
+  %br
+  =label_tag "Product ID and Quantity: "
+  =text_field_tag  :product_id, nil, :class => 'input-xxlarge'
+  %br
+  =label_tag "Eg: product 1 with quantity 5 should be entered as 1-5. Seperate items by a space."
+
+  %div{:class => 'form-actions'}
+    =submit_tag "Create Order",  :class => 'btn'
+
+

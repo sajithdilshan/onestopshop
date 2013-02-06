@@ -1,0 +1,9 @@
+%h3 New Payment
+
+= simple_form_for(@payment, :html => {:class => 'form-horizontal'}) do |f|
+  =f.input :customer_id, label: 'Customer ID'
+  =f.input :amount, label: 'Amount'
+  %div{:class => 'form-actions'}
+    =f.button :submit, :class => 'btn-primary'
+    =link_to "Cancel", payments_path, :class => 'btn'
+ 

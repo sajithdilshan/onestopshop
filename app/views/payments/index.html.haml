@@ -1,0 +1,24 @@
+%h3 Payments List
+
+= form_tag payments_path, :method => 'get', :class => "form-inline" do
+  = label_tag "Search in   "
+  = select_tag "column_name", options_for_select(%w{ id customer_id paid_date}) 
+  = label_tag "  for "
+  = text_field_tag :search, nil, :placeholder => " ", :class => "input-medium "
+  = submit_tag "Go", :name => 'submit', :class => "btn"
+
+
+  %table{:class=> 'table table-striped'}
+    %thead
+      %tr
+        %th ID
+        %th Customer ID
+        %th Amount
+        %th Paid Date
+    %tbody
+      - @payments.each do |payment|
+        %tr
+          %td= payment.id
+          %td= link_to payment.customer_id, customer_path(payment.customer_id)
+          %td= payment.amount
+          %td= payment.paid_date

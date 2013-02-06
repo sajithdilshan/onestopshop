@@ -4,7 +4,7 @@ class Customer < ActiveRecord::Base
 	validates :address, :presence => true
 	validates :province, :presence => true
 	validates :customer_type, :presence => true
-	validates :registration_number, :presence => true
+	validates :registration_number, :presence => true, :uniqueness => true
 	self.per_page = 25
 
 	def self.search_customers(column, search)

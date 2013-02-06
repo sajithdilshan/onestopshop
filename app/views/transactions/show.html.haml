@@ -1,0 +1,57 @@
+%h3 Details of Transaction No: #{@transaction.id}
+
+%h4 Customer Details
+
+%dl{:class => 'dl-horizontal'}
+  %dt Customer Name:
+  %dd= @customer.first_name
+  - if @customer.middle_name.present?
+    %dt Middle Name:
+    %dd= @customer.middle_name
+  %dt Last Name
+  %dd= @customer.last_name
+  %br
+  %dt Customer Type
+  %dd= @customer.customer_type
+  %br
+  - if @customer.customer_type == 'mailorder'
+    %dt TRN
+    %dd= @customer.registration_number
+  - else
+    %dt BRN
+    %dd= @customer.registration_number
+    %dt Initial Credit
+    %dd= @customer.initial_credit
+    %dt Remaining Credit
+    %dd= @customer.remaining_credit
+  - if @customer.customer_type == 'largerorder'
+    %dt Sales Assistant
+    %dd @customer.sales_assistant
+
+%h4 Order Details
+
+%table{:class=> 'table table-striped'}
+  %thead
+    %tr
+      %th Order ID
+      %th Product ID
+      %th Poduct Description
+      %th Product Type
+      %th Unit Price
+      %th Quantity
+      %th Cost
+  %tbody
+    - @orders.each do |order|
+      %tr
+        %td= order.id
+        %td= order.product_id
+        %td= @product[order.product_id].description
+        %td= @product[order.product_id].product_type
+        %td= @product[order.product_id].rate
+        %td= order.quantity
+        %td= order.cost
+
+
+=link_to 'Back to transactions list', transactions_path
+%br
+=link_to 'Make Payment', new_payment_path

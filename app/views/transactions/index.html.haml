@@ -1,0 +1,24 @@
+%h3 Transactions List
+
+= form_tag transactions_path, :method => 'get', :class => "form-inline" do
+  = label_tag "Search in   "
+  = select_tag "column_name", options_for_select(%w{ id customer_id order_date}) 
+  = label_tag "  for "
+  = text_field_tag :search, nil, :placeholder => " ", :class => "input-medium "
+  = submit_tag "Go", :name => 'submit', :class => "btn"
+
+
+%table{:class=> 'table table-striped'}
+  %thead
+    %tr
+      %th ID
+      %th Customer ID
+      %th Order Date
+      %th Total Cost
+  %tbody
+    - @transactions.each do |transaction|
+      %tr
+        %td= link_to transaction.id, transaction_path(transaction.id)
+        %td= link_to transaction.customer_id, customer_path(transaction.customer_id)
+        %td= transaction.order_date
+        %td= transaction.total_cost
