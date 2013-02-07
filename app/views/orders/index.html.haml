@@ -1,26 +1,18 @@
-%h3 Orders List
+%h3 Place a New Order
 
-= form_tag orders_path, :method => 'get', :class => "form-inline" do
-  = label_tag "Search in   "
-  = select_tag "column_name", options_for_select(%w{ id transaction_id product_id}) 
-  = label_tag "  for "
-  = text_field_tag :search, nil, :placeholder => " ", :class => "input-medium "
-  = submit_tag "Go", :name => 'submit', :class => "btn"
+= form_tag line_items_path, :method => 'post', :class => "form-inline" do
+  %br
+  =label_tag "Product ID: "
+  =text_field_tag  :product_id
+  =label_tag "Quantity: "
+  =text_field_tag  :qnt
+  %br
 
+  %div{:class => 'form-actions'}
+    = button_to 'Add item', line_items_path(), :remote => true, :class => 'btn'
 
-%table{:class=> 'table table-striped'}
-  %thead
-    %tr
-      %th ID
-      %th Transaction ID
-      %th Product ID
-      %th Quantity
-      %th Cost
-  %tbody
-    - @orders.each do |order|
-      %tr
-        %td= order.id
-        %td= order.transaction_id
-        %td= order.product_id
-        %td= order.quantity
-        %td= order.cost
+- if @cart.line_items.empty?
+  %div{:id => "cart",:style => "display: none"}
+- else
+  %div{:id => "cart"}  
+  = render @cart

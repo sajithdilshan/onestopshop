@@ -1,4 +1,8 @@
 Onestopshop::Application.routes.draw do
+  resources :line_items
+
+  resources :carts
+
   resources :products
   resources :customers
   resources :transactions
