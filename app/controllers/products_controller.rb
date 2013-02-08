@@ -1,14 +1,21 @@
 class ProductsController < ApplicationController
 	def index
+
+		if params[:per_page]
+		  @per_page = params[:per_page]
+		else
+		  @per_page = 15
+		end 
+
 		if params[:search].present? and params[:column_name].present?
-			@products = Product.search_products(params[:column_name], params[:search])
+			@products = Product.search_products(params[:column_name], params[:search],params[:page],@per_page)
 
 			if @products.nil?
 				@products = Product.all
 				flash[:alert] = "No records found."
 			end
 		else
-			@products = Product.all
+			@products = Product.paginate(:page => params[:page], :per_page => @per_page)
 		end
 	end
 

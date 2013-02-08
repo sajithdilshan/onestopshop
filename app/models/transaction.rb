@@ -2,10 +2,11 @@ class Transaction < ActiveRecord::Base
 	validates :customer_id, :presence => true
 	validates :order_date, :presence => true
 	validates :total_cost, :presence => true
+	# self.per_page = 20
 
-	def self.search_transactions(column, search)
+	def self.search_transactions(column, search,page,p_page)
 	  if search and column
-	    find(:all, :conditions => ["#{column} LIKE ?", "%#{search}%"])
+	  	paginate :per_page => p_page, :page => page, :conditions => ["#{column} LIKE ?", "%#{search}%"], :order => column
 	  else
 	    return nil
 	  end

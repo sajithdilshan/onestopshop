@@ -3,9 +3,9 @@ class Payment < ActiveRecord::Base
 	validates :amount, :presence => true
 	validates :paid_date, :presence => true
 
-  def self.search_payments(column, search)
+  def self.search_payments(column, search, page, p_page)
     if search and column
-      find(:all, :conditions => ["#{column} LIKE ?", "%#{search}%"])
+      paginate :per_page => p_page, :page => page, :conditions => ["#{column} LIKE ?", "%#{search}%"], :order => column
     else
       return nil
     end

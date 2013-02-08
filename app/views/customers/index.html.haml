@@ -2,9 +2,11 @@
 
 = form_tag customers_path, :method => 'get', :class => "form-inline" do
   = label_tag "Search in   "
-  = select_tag "column_name", options_for_select(%w{ id first_name last_name customer_type}) 
+  = select_tag :column_name, options_for_select(%w{ id first_name last_name customer_type}) 
   = label_tag "  for "
   = text_field_tag :search, nil, :placeholder => " ", :class => "input-medium "
+  = label_tag "per page:"
+  = select_tag :per_page, options_for_select([15,25,50], @per_page.to_i)
   = submit_tag "Go", :name => 'submit', :class => "btn"
 
 %table{:class=> 'table table-striped'}
@@ -25,4 +27,4 @@
         %td= customer.customer_type
         %td= link_to 'Update', edit_customer_path(customer)
         %td= button_to "Remove", customer_path(customer), :method => :delete, :confirm => "Customer details will be removed permanently. Are you sure?", :class => "btn btn-mini btn-danger"
-/ = will_paginate @customer, :class => 'apple_pagination'
+= will_paginate @customer, :class => 'apple_pagination'

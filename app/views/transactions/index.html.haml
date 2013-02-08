@@ -2,9 +2,11 @@
 
 = form_tag transactions_path, :method => 'get', :class => "form-inline" do
   = label_tag "Search in   "
-  = select_tag "column_name", options_for_select(%w{ id customer_id order_date}) 
+  = select_tag :column_name, options_for_select(%w{ id customer_id order_date}) 
   = label_tag "  for "
   = text_field_tag :search, nil, :placeholder => " ", :class => "input-medium "
+  = label_tag "per page:"
+  = select_tag :per_page, options_for_select([15,25,50], @per_page.to_i)
   = submit_tag "Go", :name => 'submit', :class => "btn"
 
 
@@ -22,3 +24,4 @@
         %td= link_to transaction.customer_id, customer_path(transaction.customer_id)
         %td= transaction.order_date
         %td= transaction.total_cost
+= will_paginate @transactions, :class => 'apple_pagination'

@@ -2,9 +2,11 @@
 
 = form_tag products_path, :method => 'get', :class => "form-inline" do
   = label_tag "Search in   "
-  = select_tag "column_name", options_for_select(%w{ id description product_type}) 
+  = select_tag :column_name, options_for_select(%w{ id description product_type})
   = label_tag "  for "
   = text_field_tag :search, nil, :placeholder => " ", :class => "input-medium "
+  = label_tag "per page:"
+  = select_tag :per_page, options_for_select([15,25,50], @per_page.to_i)
   = submit_tag "Go", :name => 'submit', :class => "btn"
 
 
@@ -28,4 +30,6 @@
         %td= product.rate
         %td= link_to 'Update', edit_product_path(product)
         %td= button_to "Remove", product_path(product), :method => :delete, :confirm => "Product details will be removed permanently. Are you sure?", :class => "btn btn-mini btn-danger"
-/ = will_paginate @products, :class => 'apple_pagination'
+= will_paginate @products, :class => 'apple_pagination'
+
+

@@ -4,11 +4,11 @@ class Product < ActiveRecord::Base
 	validates :product_type, :presence => true
 	validates :remaining_quantity, :presence => true
 	validates :rate, :presence => true
-	self.per_page = 15
+	# self.per_page = 20
 
-	def self.search_products(column, search)
+	def self.search_products(column, search, page, p_page)
 	  if search and column
-	    find(:all, :conditions => ["#{column} LIKE ?", "%#{search}%"])
+	  	paginate :per_page => p_page, :page => page, :conditions => ["#{column} LIKE ?", "%#{search}%"], :order => column
 	  else
 	    return nil
 	  end

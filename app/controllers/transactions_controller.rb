@@ -1,15 +1,21 @@
 class TransactionsController < ApplicationController
 
 	def index
+		if params[:per_page]
+		  @per_page = params[:per_page]
+		else
+		  @per_page = 15
+		end
+
 		if params[:search].present? and params[:column_name].present?
-			@transactions = Transaction.search_transactions(params[:column_name], params[:search])
+			@transactions = Transaction.search_transactions(params[:column_name], params[:search],params[:page], @per_page)
 		
 			if @transactions.nil?
 				@transactions = Transaction.all
 				flash[:alert] = "No records found."
 			end
 		else
-			@transactions = Transaction.all
+			@transactions = Transaction.paginate(:page => params[:page], :per_page => @per_page)
 		end
 
 	end
