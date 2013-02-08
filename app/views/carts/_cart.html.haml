@@ -8,7 +8,7 @@
       %th Type
       %th Unit Price
       %th Quantity
-      %th Total Price
+      %th Total Price (Rs.)
       %th Remove
   %tbody
     - cart.line_items.each do |item|
@@ -24,9 +24,10 @@
       %td= item.total_price
       %td= button_to "Remove", item, :method => :delete, :confirm => "Remove Item??", :class => "btn btn-mini btn-danger"
 
-%dl{:class => "dl-horizontal"}
-  %dt Sub Total
-  %dd= cart.total_price
+%div{:class => "well well-small"}
+  %dl{:class => "dl-horizontal"}
+    %dt Sub Total: Rs.
+    %dd= cart.total_price
 
 = button_to "Checkout" , new_order_path, :method => :get, :class => "btn btn-primary"
 = button_to 'Empty cart' , cart, :method => :delete, :confirm => 'Are you sure?', :class => "btn btn-danger"

@@ -2,33 +2,39 @@
 
 %h4 Customer Details
 
-%dl{:class => 'dl-horizontal'}
-  %dt Customer Name:
-  %dd= @customer.first_name
-  - if @customer.middle_name.present?
-    %dt Middle Name:
-    %dd= @customer.middle_name
-  %dt Last Name
-  %dd= @customer.last_name
-  %br
-  %dt Customer Type
-  %dd= @customer.customer_type
-  %br
-  - if @customer.customer_type == 'mailorder'
-    %dt TRN
-    %dd= @customer.registration_number
-  - else
-    %dt BRN
-    %dd= @customer.registration_number
-    %dt Initial Credit
-    %dd= @customer.initial_credit
-    %dt Remaining Credit
-    %dd= @customer.remaining_credit
-  - if @customer.customer_type == 'largerorder'
-    %dt Sales Assistant
-    %dd @customer.sales_assistant
+-if not @customer.nil?
+  %dl{:class => 'dl-horizontal'}
+    %dt Customer ID:
+    %dd= @customer.id
+    %dt Customer Name:
+    %dd= @customer.first_name
+    - if @customer.middle_name.present?
+      %dt Middle Name:
+      %dd= @customer.middle_name
+    %dt Last Name
+    %dd= @customer.last_name
+    %br
+    %dt Customer Type
+    %dd= @customer.customer_type
+    %br
+    - if @customer.customer_type == 'mailorder'
+      %dt TRN
+      %dd= @customer.registration_number
+    - else
+      %dt BRN
+      %dd= @customer.registration_number
+      %dt Initial Credit (Rs.)
+      %dd= @customer.initial_credit
+      %dt Remaining Credit (Rs.)
+      %dd= @customer.remaining_credit
+    - if @customer.customer_type == 'largerorder'
+      %dt Sales Assistant
+      %dd @customer.sales_assistant
+-else
+  %h5 Customer was removed.
 
-%h4 Order Details
+%br
+%h4 Order List
 
 %table{:class=> 'table table-striped'}
   %thead
@@ -37,20 +43,32 @@
       %th Product ID
       %th Poduct Description
       %th Product Type
-      %th Unit Price
+      %th Unit Price (Rs.)
       %th Quantity
-      %th Cost
+      %th Cost (Rs.)
   %tbody
     - @orders.each do |order|
       %tr
         %td= order.id
         %td= order.product_id
-        %td= @product[order.product_id].description
-        %td= @product[order.product_id].product_type
-        %td= @product[order.product_id].rate
+        - if not @product[order.product_id].nil?
+          %td= @product[order.product_id].description
+          %td= @product[order.product_id].product_type
+          %td= @product[order.product_id].rate
+        - else
+          %td Product removed
+          %td Product removed
+          %td Product removed
         %td= order.quantity
         %td= order.cost
+        
+%div{:class => "well well-small"}
+  %dl{:class => "dl-horizontal"}
+    %dt Sub Total: Rs.
+    %dd= @transaction.total_cost
 
+%p{:class=>"text-error"} Sub total is caculated based on the prices of products on #{@transaction.order_date}, which is the transaction date.
+%br
 
 =link_to 'Back to transactions list', transactions_path, :class => "btn"
 =link_to 'Make Payment', new_payment_path, :class => "btn"

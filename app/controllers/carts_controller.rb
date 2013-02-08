@@ -2,12 +2,7 @@ class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
   def index
-    @carts = Cart.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @carts }
-    end
+    redirect_to orders_path
   end
 
   # GET /carts/1
@@ -30,17 +25,12 @@ class CartsController < ApplicationController
   # GET /carts/new
   # GET /carts/new.json
   def new
-    @cart = Cart.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @cart }
-    end
+    redirect_to orders_path
   end
 
   # GET /carts/1/edit
   def edit
-    @cart = Cart.find(params[:id])
+    redirect_to orders_path
   end
 
   # POST /carts
@@ -62,17 +52,7 @@ class CartsController < ApplicationController
   # PUT /carts/1
   # PUT /carts/1.json
   def update
-    @cart = Cart.find(params[:id])
-
-    respond_to do |format|
-      if @cart.update_attributes(params[:cart])
-        format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @cart.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to orders_path
   end
 
   # DELETE /carts/1

@@ -20,10 +20,10 @@ class TransactionsController < ApplicationController
 		@transaction = Transaction.find(id)
 		@orders = Order.all(:conditions => {:transaction_id => id})
 		@orders.each do |item|
-			p = Product.find(item.product_id)
+			p = Product.find_by_id(item.product_id)
 			@product[item.product_id] = p
 		end
-		@customer = Customer.find(@transaction.customer_id)
+		@customer = Customer.find_by_id(@transaction.customer_id)
 
 	end
 

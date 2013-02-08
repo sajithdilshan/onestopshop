@@ -1,6 +1,8 @@
 %h3 Details about #{@customer.first_name} #{@customer.last_name}
 
 %dl{:class => 'dl-horizontal'}
+  %dt Customer ID:
+  %dd= @customer.id
   %dt First Name:
   %dd= @customer.first_name
   - if @customer.middle_name.present?
@@ -29,9 +31,9 @@
   - else
     %dt BRN
     %dd= @customer.registration_number
-    %dt Initial Credit
+    %dt Initial Credit (Rs.)
     %dd= @customer.initial_credit
-    %dt Remaining Credit
+    %dt Remaining Credit (Rs.)
     %dd= @customer.remaining_credit
   - if @customer.customer_type == 'largerorder'
     %dt Sales Assistant

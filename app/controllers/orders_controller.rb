@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 		customer = Customer.find_by_id(customer_id)
 
 		if customer.nil?
-			flash[:alert] = "Customer doesnot exist"
+			flash[:alert] = "Customer does not exist"
 			redirect_to new_order_path
 			return
 		end

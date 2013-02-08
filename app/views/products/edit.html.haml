@@ -4,7 +4,7 @@
 	=f.input :description, label: 'Product Description'
 	=f.input :product_type, label: 'Product Type'
 	=f.input :remaining_quantity, label: 'Quantity'
-	=f.input :rate, label: 'Price'
+	=f.input :rate, label: 'Price (Rs.)'
 	%div{:class => 'form-actions'}
 		=f.button :submit, :class => 'btn-primary'
 		=link_to "Cancel", products_path, :class => 'btn'
