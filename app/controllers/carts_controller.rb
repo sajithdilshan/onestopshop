@@ -34,6 +34,7 @@ class CartsController < ApplicationController
   end
 
   # POST /carts
+  # POST /carts.json
   def create
     @cart = Cart.new(params[:cart])
 
