@@ -9,7 +9,7 @@ class EmployeSessionsController < ApplicationController
       flash[:notice] = "Login Successful"
       redirect_to products_path
     else
-      flash[:notice] = "Login Unsuccessful. Invalid username or password"
+      flash[:alert] = "Login Unsuccessful. Invalid username or password"
       redirect_to new_employe_session_path 
     end
   end
