@@ -10,7 +10,8 @@ Onestopshop::Application.routes.draw do
   resources :orders
   resources :payments
 
-  root :to => redirect_to new_employe_session_path
+  root :to => redirect('/products')
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
