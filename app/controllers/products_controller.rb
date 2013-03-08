@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+	before_filter :login_required, :only => [:index,:new,:edit]
+
 	def index
 
 		if params[:per_page]

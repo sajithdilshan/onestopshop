@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
-	def index
+	before_filter :login_required, :only => [:index,:show,:new,:edit]
 
+	def index
 		if params[:per_page]
 			@per_page = params[:per_page]
 		else

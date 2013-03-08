@@ -2,7 +2,8 @@ Onestopshop::Application.routes.draw do
   resources :line_items
 
   resources :carts
-
+  resources :employe_sessions
+  match 'logout' => "employe_sessions#destroy", :as => :logout
   resources :products
   resources :customers
   resources :transactions

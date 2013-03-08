@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207183432) do
+ActiveRecord::Schema.define(:version => 20130308104953) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(:version => 20130207183432) do
     t.float  "initial_credit"
     t.float  "remaining_credit"
     t.string "sales_assistant"
+  end
+
+  create_table "employes", :force => true do |t|
+    t.string "username",          :null => false
+    t.string "crypted_password",  :null => false
+    t.string "password_salt",     :null => false
+    t.string "persistence_token", :null => false
   end
 
   create_table "line_items", :force => true do |t|

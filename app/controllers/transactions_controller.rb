@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+	before_filter :login_required, :only => [:index,:show]
 
 	def index
 		if params[:per_page]

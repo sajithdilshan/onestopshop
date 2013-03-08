@@ -26,5 +26,9 @@
 			%li.divider
 			%li= link_to "Make a payment", new_payment_path
 			%li= link_to "Payment List", payments_path
+
+-if @employe_session.nil?
+	%ul.nav{:class=>"pull-right"}
+		%li= link_to 'Logout', :logout
 			
 			

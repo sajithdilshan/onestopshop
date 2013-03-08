@@ -1,0 +1,11 @@
+= simple_form_for(@employe_session, :url => employe_sessions_path,:html => {:class => 'form-horizontal'}) do |f|
+    %div{:class => "span5 offset3"}
+        %br
+        %br
+        %br
+        %br
+        %p Please login to continue
+        =f.input :username, label: 'Username'
+        =f.input :password, label: 'Password'
+        %div{:class => 'form-actions'}
+            =f.button :submit, 'Login',:class => 'btn-primary'

@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_filter :login_required, :only => [:index,:show,:new,:edit]
   # GET /carts
   # GET /carts.json
   def index

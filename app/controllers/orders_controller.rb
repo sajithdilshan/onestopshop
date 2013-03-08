@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+	before_filter :login_required, :only => [:index,:new]
 	def index
 		@cart = current_cart
 	end

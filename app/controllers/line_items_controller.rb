@@ -1,4 +1,5 @@
 class LineItemsController < ApplicationController
+  before_filter :login_required, :only => [:index,:show,:new,:edit]
   # GET /line_items
   # GET /line_items.json
   def index
