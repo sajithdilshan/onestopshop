@@ -39,5 +39,5 @@ class OrdersController < ApplicationController
 		redirect_to transaction_path(transaction.id)
 
 	end
-	
+
 end

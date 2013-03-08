@@ -2,14 +2,14 @@ class CustomersController < ApplicationController
 	def index
 
 		if params[:per_page]
-		  @per_page = params[:per_page]
+			@per_page = params[:per_page]
 		else
-		  @per_page = 15
-		end 
+			@per_page = 15
+		end
 
 		if params[:search].present? and params[:column_name].present?
 			@customers = Customer.search_customers(params[:column_name], params[:search],params[:page],@per_page)
-		
+
 			if @customers.nil?
 				@customers = Customer.all
 				flash[:alert] = "No records found."

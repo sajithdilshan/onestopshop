@@ -2,10 +2,10 @@ class ProductsController < ApplicationController
 	def index
 
 		if params[:per_page]
-		  @per_page = params[:per_page]
+			@per_page = params[:per_page]
 		else
-		  @per_page = 15
-		end 
+			@per_page = 15
+		end
 
 		if params[:search].present? and params[:column_name].present?
 			@products = Product.search_products(params[:column_name], params[:search],params[:page],@per_page)

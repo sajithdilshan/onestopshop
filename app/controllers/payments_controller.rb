@@ -6,11 +6,11 @@ class PaymentsController < ApplicationController
       @per_page = params[:per_page]
     else
       @per_page = 15
-    end 
+    end
 
     if params[:search].present? and params[:column_name].present?
       @payments = Payment.search_payments(params[:column_name], params[:search],params[:page],@per_page)
-    
+
       if @payments.nil?
         @payments = Payment.all
         flash[:alert] = "No records found."
@@ -21,11 +21,11 @@ class PaymentsController < ApplicationController
   end
 
 
-	def new
+  def new
     @payment = Payment.new
-	end
+  end
 
-	def create
+  def create
     payment = params[:payment]
 
     if not Customer.find_by_id(payment['customer_id']).nil?
@@ -50,6 +50,6 @@ class PaymentsController < ApplicationController
       flash[:alert] = "Error making payment."
       redirect_to new_payment_path
     end
-	end
+  end
 
 end
