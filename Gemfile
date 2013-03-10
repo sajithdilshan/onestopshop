@@ -15,7 +15,7 @@ end
 
 
 gem 'haml'
-# gem 'bootstrap-sass'
+gem 'bootstrap-sass'
 gem 'will_paginate', '~> 3.0.0'
 gem 'simple_form'
 gem 'authlogic'
