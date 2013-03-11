@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
 
 	def self.search_orders(column, search)
 	  if search and column
-	    find(:all, :conditions => ["#{column} LIKE ?", "%#{search}%"])
+	    find(:all, :conditions => ["CAST(#{column} AS TEXT) ILIKE ?", "%#{search}%"])
 	  else
 	    return nil
 	  end
