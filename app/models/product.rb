@@ -10,7 +10,7 @@ class Product < ActiveRecord::Base
 
 	def self.search_products(column, search, page, p_page)
 		if search and column
-			paginate :per_page => p_page, :page => page, :conditions => ["CAST(#{column} AS TEXT) LIKE ?", "%#{search}%"], :order => column
+			paginate :per_page => p_page, :page => page, :conditions => ["CAST(#{column} AS TEXT) ILIKE ?", "%#{search}%"], :order => column
 		else
 			return nil
 		end

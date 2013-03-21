@@ -55,6 +55,7 @@ class ProductsController < ApplicationController
 			redirect_to products_path
 		else
 			flash[:alert] = "Error removing Product with ID #{@product.id}."
+		end
 	end
 
 end
