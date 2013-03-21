@@ -50,9 +50,11 @@ class ProductsController < ApplicationController
 
 	def destroy
 		@product = Product.find params[:id]
-		@product.destroy
-		flash[:notice] = "Product with ID #{@product.id} removed."
-		redirect_to products_path
+		if @product.destroy
+			flash[:notice] = "Product with ID #{@product.id} removed."
+			redirect_to products_path
+		else
+			flash[:alert] = "Error removing Product with ID #{@product.id}."
 	end
 
 end
