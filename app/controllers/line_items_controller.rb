@@ -48,6 +48,12 @@ class LineItemsController < ApplicationController
       return
     end
 
+    if params[:qnt].to_i <= 0
+      flash[:alert] = "Quantity should be greater than 0."
+      redirect_to orders_path
+      return
+    end
+
     @line_item = @cart.add_product(product.id, params[:qnt])
     product.update_attributes(:remaining_quantity => (product.remaining_quantity - params[:qnt].to_i))
 

@@ -3,7 +3,9 @@ class Product < ActiveRecord::Base
 	validates :description, :presence => true
 	validates :product_type, :presence => true
 	validates :remaining_quantity, :presence => true
+	validates :remaining_quantity, :numericality => { :greater_than => 0 }
 	validates :rate, :presence => true
+	validates :rate, :numericality => { :greater_than => 0 }
 	# self.per_page = 20
 
 	def self.search_products(column, search, page, p_page)

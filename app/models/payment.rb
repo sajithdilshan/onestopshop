@@ -1,6 +1,7 @@
 class Payment < ActiveRecord::Base
 	validates :customer_id, :presence => true
 	validates :amount, :presence => true
+  validates :amount, :numericality => { :greater_than => 0 }
 	validates :paid_date, :presence => true
 
   def self.search_payments(column, search, page, p_page)
