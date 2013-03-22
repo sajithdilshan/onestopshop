@@ -56,9 +56,10 @@ class CustomersController < ApplicationController
 	end
 
 	def destroy
-		@customer = Customer.find params[:id]
-		@customer.destroy
-		flash[:notice] = "#{@customer.first_name}'s details permanently removed."
 		redirect_to customers_path
+		# @customer = Customer.find params[:id]
+		# @customer.destroy
+		# flash[:notice] = "#{@customer.first_name}'s details permanently removed."
+		# redirect_to customers_path
 	end
 end
