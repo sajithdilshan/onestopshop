@@ -6,7 +6,7 @@ class Payment < ActiveRecord::Base
 
   def self.search_payments(column, search, page, p_page)
     if search and column
-      paginate :per_page => p_page, :page => page, :conditions => ["CAST(#{column} AS TEXT) ILIKE ?", "%#{search}%"], :order => column
+      paginate :per_page => p_page, :page => page, :conditions => ["CAST(#{column} AS TEXT) LIKE ?", "%#{search}%"], :order => column
     else
       return nil
     end
